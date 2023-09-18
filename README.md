@@ -1,6 +1,6 @@
-This is a summary of my machine learning model that predicts the price of bitcoin.
+This is a summary of my machine-learning model that predicts the price of Bitcoin.
 
-This is a ML model project in TensorFlow that utilizes transfer learning, convulutional neural networks and relational nueral netwroks.
+This is an ML model project in TensorFlow that utilizes transfer learning, convolutional neural networks, and relational neural networks.
 
 ## Table of Contents 
 * [Motivation](#motivation)
@@ -12,54 +12,139 @@ This is a ML model project in TensorFlow that utilizes transfer learning, convul
 
 ## Motivation
 Upon starting my ML journey, I wanted to create something that could predict stuff in the future like house prices or Bitcoin prices.
-![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/Screenshot%202023-08-08%20232313.jpg)
+![alt text](https://github.com/Vybavnag/BitPredict/blob/main/images/Bitcoin_chart.jpg)
 
 
 ## Summary of approach
-I started of with a basic sequential CNN with 2 layers  with a protion of data and then I scaled them up. The evaluation results are here:
-![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/19_Lambda-1.jpg)
+I started with a basic sequential CNN with 2 layers with a portion of data and then I scaled them up. The evaluation results are here:
 
-The resluts werent what I wanted so I decided to create a Conv1d model. The evaluation results are here: 
-![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/IMG_3388.jpg)\
+Model1:
+
+![alt text](https://github.com/Vybavnag/BitPredict/blob/main/images/model_1_preds.jpg)
+
+Model2:
+
+![alt text](https://github.com/Vybavnag/BitPredict/blob/main/images/model_2_preds.jpg)
+
+Model3:
+
+![alt text](https://github.com/Vybavnag/BitPredict/blob/main/images/model_3_preds.jpg)
+
+
+The results weren't what I wanted so I decided to create a Conv1d model. The evaluation results are here: 
+
+**{'mae': 574.57104,**
+
+
+ **'mse': 1195531.0,**
+
+ 
+ **'rmse': 1093.4034,**
+
+ 
+ **'mape': 2.5650182,**
+
+ 
+ **'mase': 1.0093622}**
+ 
 
 I decided to use the LSTM for the time series data. The evaluation results are here:
-![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/19_Lambda-1.jpg)
-It looks like our model is performing worse. I decided to combine token and character embeddings for the next model.
+
+**{'mae': 579.0948,**
+
+
+ **'mse': 1206146.1,**
+
+ 
+ **'rmse': 1098.2468,**
+
+ 
+ **'mape': 2.613475,**
+
+ 
+ **'mase': 1.0173092}**
+
+
+It looks like our model is performing worse. I decided to use multivariate time series data for the next model. The evaluation results are here:
+
+**{'mae': 568.42395,**
+
+
+ **'mse': 1179631.1,**
+
+ 
+ **'rmse': 1086.1083,**
+
+ 
+ **'mape': 2.541055,**
+
+ 
+ **'mase': 0.99856347}**
+
 
 I then replicated the layers presented in the N-Beats model from "NEURAL BASIS EXPANSION ANALYSIS FOR
-INTERPRETABLE TIME SERIES FORECASTING" paper. The evaluation results are here:
-![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/IMG_3388.jpg)\
-To end it of I created an enssemble and staked the models on top of each other. Results are shown in the results section
+INTERPRETABLE TIME SERIES FORECASTING" paper. Here is what the model looks like:
+
+![alt text](https://github.com/Vybavnag/BitPredict/blob/main/images/nbeats.jpg)
+
+
+
+The evaluation results are here:
+
+**{'mae': 590.5516,**
+
+
+ **'mse': 1231043.1,**
+
+ 
+ **'rmse': 1109.5238,**
+
+ 
+ **'mape': 2.6545231,**
+
+ 
+ **'mase': 1.0374355}**
+
+To end it off I created an ensemble and staked the models on top of each other. Results are shown in the results section
 
 ## Results
-* Batch Layer Results:
-* Bucket 0: Trending items: {1307153: 0.5, 4100346: 0.25}
-* Bucket 1: Trending items: {45300114: -0.5, 1307153: -0.5, 5100542: -0.5, 3600666: -0.5, 4804137: -0.5, 4100346: -0.25}
-* Bucket 2: Trending items: {45300114: 0.5, 3600666: 0.5, 4804137: 0.5}
-* Bucket 3: Trending items: {23100035: -0.5, 1002633: -0.5, 12711562: -0.5, 2800396: -0.5, 1801739: -0.5, 5100817: -0.5, 45300114: -0.5, 3600661: -0.5, 5000475: -0.5, 3600666: -0.5, 5300125: -0.5, 3700766: -0.5, 5301663: -0.5, 17300769: -0.5, 1004836: -0.5, 12703015: -0.5, 12708392: -0.5, 4804137: -0.5, 26300078: -0.5, 26401582: -0.5, 1002542: -0.5, 1005105: -0.5, 1004210: -0.5, 12719535: -0.5, 26300084: -0.5, 5300405: -0.5, 1004856: -0.6666666666666666, 26400314: -0.5, 1005116: -0.5, 23900093: -0.5, 1005115: -0.5, 1004863: -0.5, 4900420: -0.5, 8700229: -0.5, 1004741: -0.5, 3801416: -0.5, 1005003: -0.5, 1005144: -0.5, 3300315: -0.5, 1004767: -0.8, 4802400: -0.5, 1500258: -0.5, 3900003: -0.5, 45100016: -0.5, 4100346: -0.5, 6700796: -0.5, 24100862: -0.5, 1307135: -0.5}
-* Product IDs: [1307153, 4100346, 45300114, 5100542, 3600666]
-* Trending Percentages: [1.0, 1.0, 1.0, 1.0, 1.0]
-* Speed Layer Results:
-* Similar Product Recommendations for User 532647354: [49100009, 1304409, 1005100, 2601423, 1005115]
-* Precomputed results stored.
-* Serving Layer Results:
-* Stored Results: [(1307153, 1.0), (4100346, 1.0), (45300114, 1.0), (5100542, 1.0), (3600666, 1.0)]
-* Product with the Highest Trending Percentage: 1307153
-* Most Similar Product from Speed Layer: 49100009
-* Recommending [Product ID: 1307153, Category: computers.notebook, Brand: lenovo and Product ID: 49100009, Category: nan, Brand: laston]
+**{'mae': 566.77386,**
 
-*Results showcase trending items out of 10000 rows that were sampled, similar products to what user 532647354 interacted with along with recommendations for said user*
+
+**'mse': 1151240.8,**
+
+ 
+ **'rmse': 1072.9589,**
+
+ 
+ **'mape': 2.5520275,**
+
+ 
+ **'mase': 0.9956647}**
+ 
+Prediction results:
+
+
+ ![alt text](https://github.com/Vybavnag/BitPredict/blob/main/images/prediction_results.jpg)
+ 
+
+Comparing Models:
+
+
+ ![alt text](https://github.com/Vybavnag/BitPredict/blob/main/images/comparing_models.jpg)
+ 
+
+
+ 
 
 ## Insights
-The data showcases a system that identifies trending products across different groupings, termed "buckets". Each product, denoted by an ID, has a trending percentage in these buckets; a positive value indicates rising popularity, while a negative hints at decreasing interest. For example, product "1307153" sees both growth and decline in different buckets.The speed layer offers real-time product recommendations for individual users, distinct from the general trend analysis. Lastly, the serving layer amalgamates these insights, pinpointing top trending products and interweaving real-time user-specific recommendations. Negative percentages, especially, highlight products witnessing waning demand or shifting consumer preferences in their respective categories.
+Trying to predict future results does give us a model that is successful in doing so however, especially when it comes to cryptocurrency everything is volatile and relies on a series of factors that can never fully be implemented into our model. It is like predicting the stock market. We can get close but never fully accurate. The N-beats models and others do get close but they can never predict the future fully.
 
 ## What I learned
-* Sometimes, just analyzing data can teach us a lot, even without advanced predictions.
-* Planning ahead is important. Decide what data you want to input and get out of your model before you start.
-* What are Kafka systems.
-* How to create an advanced data pipeline in python to analyze data and create reccomendations 
+* How to scale data into models using Windows.
+* Implementing RNNs and how to create your layers in Tensorflow.
+* How to vizualize timeseries data.
+* Can never fully predict the future, especially with cryptocurrency.
   
-
-
 ## How to use this repository
-This repository has a main_code file which you should download as well as the dataset_link file which leads you to the datasets used. Download them in the same file and rub the main_code file preferably on JypterNotebook or GoogleColab. Main_code_outputs shows all the outputs I got, when you run the file you should get something similar. The rest of the files showcase what I learned week by week while working on this project with OpenAvenues.
+Open the ipynb file in Google Colab or Jupyter Notebook and run. Make sure there is a GPU with high RAM.
