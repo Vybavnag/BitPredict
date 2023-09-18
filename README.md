@@ -1,6 +1,6 @@
-This is a summary of my Natural Language Processing project.
+This is a summary of my machine learning model that predicts the price of bitcoin.
 
-This is a NLP project in TensorFlow that utilizes transfer learning, convulutional neural networks and embbeding.
+This is a ML model project in TensorFlow that utilizes transfer learning, convulutional neural networks and relational nueral netwroks.
 
 ## Table of Contents 
 * [Motivation](#motivation)
@@ -11,26 +11,25 @@ This is a NLP project in TensorFlow that utilizes transfer learning, convulution
 * [How to use this repository](#how-to-use-this-repository)
 
 ## Motivation
-I wanted to create a NLP project that classifies infromation as important or not. I found and paper on PubMed 200k RCT and decided to replicate it.
+Upon starting my ML journey, I wanted to create something that could predict stuff in the future like house prices or Bitcoin prices.
 ![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/Screenshot%202023-08-08%20232313.jpg)
 
 
 ## Summary of approach
-For this project, I decided to first create a baseline with as few parameters as possible so I strated of with a sklearn model. The evaluation results are here:
+I started of with a basic sequential CNN with 2 layers  with a protion of data and then I scaled them up. The evaluation results are here:
 ![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/19_Lambda-1.jpg)
 
-I decided to start of with a CNN and decided to use Conv1D. The evaluation results are here: 
+The resluts werent what I wanted so I decided to create a Conv1d model. The evaluation results are here: 
 ![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/IMG_3388.jpg)\
-It did better than base line but to get a better accuracy I decided to use transfer learning.
 
-I decided to use Universal Sentence encoder model and then freeze the layers for feature extraction. The evaluation results are here:
+I decided to use the LSTM for the time series data. The evaluation results are here:
 ![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/19_Lambda-1.jpg)
 It looks like our model is performing worse. I decided to combine token and character embeddings for the next model.
 
-The evaluation results are here:
+I then replicated the layers presented in the N-Beats model from "NEURAL BASIS EXPANSION ANALYSIS FOR
+INTERPRETABLE TIME SERIES FORECASTING" paper. The evaluation results are here:
 ![alt text](https://github.com/Vybavnag/OpenAvenues_project/blob/main/images/IMG_3388.jpg)\
-Still isnt beating base model so i decided to add positional embedings as well. The results are shown in the results section.
-
+To end it of I created an enssemble and staked the models on top of each other. Results are shown in the results section
 
 ## Results
 * Batch Layer Results:
